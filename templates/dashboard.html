@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bar-link {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            background-color: #2096CD;
+            border: 1px solid gray;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 5px;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido al sistema de citas para la clínica dental</h1>
+        <form action="/dash" method="post">
+            <a class="bar-link" href="#" onclick="selectOption(1)">Inicio</a>
+            <a class="bar-link" href="#" onclick="selectOption(2)">Citas</a>
+            <a class="bar-link" href="#" onclick="selectOption(3)">Pacientes</a>
+            <input type="hidden" id="selected_option" name="opcion">
+        </form>
+        <form action="/logout" method="get">
+            <button type="submit" class="bar-link" style="background-color: red;">Log Out</button>
+        </form>
+    </div>
+
+    <script>
+        function selectOption(option) {
+            document.getElementById("selected_option").value = option;
+            document.querySelector("form").submit();
+        }
+    </script>
+</body>
+</html>

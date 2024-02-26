@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Paciente</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body, h1 {
+            font-family: "Raleway", sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr');
+            background-size: cover;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            background-color: #0000;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+
+        input, textarea {
+            display: block;
+            width: 100%; /* Added to make inputs take full width */
+            padding: 8px;
+            margin-bottom: 20px;
+            background-color: #00000;
+            color: black;
+            font-weight: bold;
+            border: 1px solid white; /* Added border for better visibility */
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="/patient/add">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="last_name">Apellido:</label>
+        <input type="text" id="last_name" name="last_name" required>
+        <br>
+        <label for="id">ID del Paciente:</label>
+        <input type="text" id="id" name="id" required>
+        <br>
+        <label for="birthdate">Fecha de Nacimiento:</label>
+        <input type="date" id="birthdate" name="birthdate" required>
+        <br>
+        <label for="address">Dirección:</label>
+        <input type="text" id="address" name="address" required>
+        <br>
+        <input type="submit" value="Agregar Paciente">
+    </form>
+</body>
+</html>

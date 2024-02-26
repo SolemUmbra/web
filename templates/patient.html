@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Búsqueda y Agregar de Paciente</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    
+    <style>
+        body, h1 {
+            font-family: "Raleway", sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr');
+            background-size: cover;
+        }
+
+        .content {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+            text-align: center;
+            margin: 20px auto;
+            color: white
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            background-color: #0000;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+
+        input, select, textarea {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            background-color: #00000;
+            color: black;
+            font-weight: bold;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <form method="post" action="/patient/search">
+            <label for="name_last_name">Paciente:</label>
+            <input type="text" id="name_last_name" name="name_last_name" required>
+            <input type="submit" value="Buscar Paciente">
+        </form>
+
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+
+        <form method="get" action="/patient/add">
+            <input type="submit" value="Agregar Paciente">
+        </form>
+
+        {% if review %}
+            <h2>Resultado de la búsqueda:</h2>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>ID</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Direccion</th>
+                </tr>
+                <tr>
+                    <td>{{ review[1] }} {{ review[2] }}</td> 
+                    <td>{{ review[0] }}</td>  
+                    <td>{{ review[3] }}</td> 
+                    <td>{{review[4] }}</td>
+                </tr>
+            </table>
+            <h2>Editar Paciente:</h2>
+            <form method="post" action="/patient/edit">
+                <select name="column_update">
+                    <option value="name">Nombre</option>
+                    <option value="last_name">Apellido</option>
+                    <option value="id">ID</option>
+                    <option value="birthdate">Fecha de Nacimiento</option>
+                    <option value="address">Dirección</option>
+                </select>
+                <input type="text" name="new_data" placeholder="Nuevo valor">
+                <input type="hidden" name="name" value="{{ review[1] }}">
+                <input type="hidden" name="last_name" value="{{ review[2] }}">
+                <input type="hidden" name="id" value="{{ review[0] }}">
+                <input type="hidden" name="birthdate" value="{{ review[3] }}">
+                <input type="hidden" name="address" value="{{ review[4] }}">
+                <input type="submit" value="Editar">
+            </form>
+            <h2>Eliminar Paciente:</h2>
+            <form method="post" action="/patient/delete">
+                <input type="hidden" name="name" value="{{ review[1] }}">
+                <input type="hidden" name="last_name" value="{{ review[2] }}">
+                <input type="submit" value="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este paciente?')">
+            </form>
+        {% endif %}
+        <form method="get" action="{{ url_for('dashboard') }}">
+        <button type="submit" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 20px; border-radius: 3px; cursor: pointer;">Dashboard</button>
+    </form>
+        <form method="get" action="{{ url_for('appointment_form') }}">
+        <button type="submit" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 20px; border-radius: 3px; cursor: pointer;">Citas</button>
+    </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body, h1 {
+            font-family: "Raleway", sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr');
+            background-size: cover;
+        }
+        
+        form {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            background-color: #0000;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+
+        input, textarea {
+            display: block;
+            width: 100%; /* Added to make inputs take full width */
+            padding: 8px;
+            margin-bottom: 20px;
+            background-color: #00000;
+            color: black;
+            font-weight: bold;
+            border: 1px solid white; /* Added border for better visibility */
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+</head>
+<body>
+    <form method="post" action="/appointment/add">
+        <label for="name_last_name">Paciente:</label>
+        <input type="text" name="name_last_name" required>
+
+        <label for="appo_date">Fecha de Cita:</label>
+        <input type="date" name="appo_date" required>
+
+        <label for="time">Hora:</label>
+        <input type="time" name="time" required>
+
+        <label for="reason">Motivo:</label>
+        <textarea name="reason" required></textarea>
+
+        <input type="submit" value="Agregar Cita">
+    </form>
+</body>
+</html>
